@@ -29,10 +29,10 @@ players = {}
 async def on_ready():
 	change_status.start()
 	print('Bot is ready.')
-#@client.event
-#async def on_command_error(error, ctx):
-#    if isinstance(error, commands.CommandOnCooldown):
-#        await client.send_message(ctx.message.channel, content='This command is on a %.2fs cooldown' % error.retry_after)
+@client.event
+async def on_command_error(error, ctx):
+    if isinstance(error, commands.CommandOnCooldown):
+        await client.send_message(ctx.message.channel, content='This command is on a %.2fs cooldown' % error.retry_after)
     #raise error  # re-raise the error so all the errors will still show up in console
 
 
