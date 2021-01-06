@@ -14,7 +14,7 @@ from chatbot import Chat, register_call
 #os.chdir("C:\\Users\\Admin\\Document\\python")
 
 events = [1, 0]
-
+token = os.getenv('BOT_TOKEN')
 
 client = commands.Bot(command_prefix = ';')
 client.remove_command('help')
@@ -465,5 +465,4 @@ async def egc(ctx, *, message):
         
 
 
-token = os.environ.get('BOT_TOKEN')
 client.run(token)

@@ -1,1 +1,1 @@
-web: python resonate.py
+worker: python resonate.py
