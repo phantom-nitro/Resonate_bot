@@ -302,6 +302,7 @@ async def help(ctx, cmd: Optional[str]):
 
         embed = discord.Embed(color = discord.Colour.teal())
         embed.set_author(name = 'Help')
+        embed.add_field(name = 'How it works?', value = 'Whoever gets Respect points 6000(THE IMPOSSIBLE) is the Master of the Universe [for now]', inline = False)
         embed.add_field(name = ';help <command below>', value = 'Use ;help <command below> for brief explanation.', inline = False)
         embed.add_field(name = ';u', value = 'no u', inline = False)
         embed.add_field(name = ';q', value = 'Quotes from Famous People', inline = False)
