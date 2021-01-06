@@ -9,7 +9,7 @@ from discord.ext import commands, tasks
 from discord.ext.commands import cooldown, BucketType
 from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument, CommandOnCooldown)
 from random import choice
-from chatbot import Chat, register_call
+#from chatbot import Chat, register_call
 
 #os.chdir("C:\\Users\\Admin\\Document\\python")
 
@@ -21,8 +21,8 @@ client.remove_command('help')
 status = ['Music', 'Movie', 'Surangani Bad Words Remix', 'Adichi Thooku Bad Words', 'Rocket League', 'Vola', 'Slapping Hydrogene']
 players = {}
 
-template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
-chat = Chat(template_file_path)
+#template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
+#chat = Chat(template_file_path)
 
 
 @client.event
@@ -283,12 +283,12 @@ async def update_bank(user, change = 0, mode = 'wallet'):
     bal = [users[str(user.id)]['wallet'], users[str(user.id)]['bank']]
     return bal
 
-@client.command(pass_context = True)
-async def ai(ctx, *, message):
-    result = chat.respond(message)
+#@client.command(pass_context = True)
+#async def ai(ctx, *, message):
+#    result = chat.respond(message)
 
-    embed = discord.Embed(title = "Resonate AI", description = result, color = (0xF7FF00))
-    await ctx.send(embed = embed)
+#    embed = discord.Embed(title = "Resonate AI", description = result, color = (0xF7FF00))
+#    await ctx.send(embed = embed)
 
 
 @client.command(name='ping', help = 'return Latency')
