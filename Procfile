@@ -1,1 +1,1 @@
-Worker: node resonate.py
+web: python resonate.py
