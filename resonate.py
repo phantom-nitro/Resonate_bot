@@ -306,7 +306,7 @@ async def help(ctx, cmd: Optional[str]):
         embed.add_field(name = ';help <command below>', value = 'Use ;help <command below> for brief explanation.', inline = False)
         embed.add_field(name = ';u', value = 'no u', inline = False)
         embed.add_field(name = ';q', value = 'Quotes from Famous People', inline = False)
-        embed.add_field(name = ';q add <New Quote>', value = 'Add your own/ your Famous people Quotes', inline = False)
+        embed.add_field(name = ';q add <"Quote" - author>', value = 'Add your own/ Famous people Quotes.', inline = False)
         embed.add_field(name = ';bm', value = 'Chances of getting BlackMarket goal explosion', inline = False)
         embed.add_field(name = ';eg', value = 'Easter Egg?', inline = False)
         embed.add_field(name = ';egc <special code>', value = '`Got Special CODE?` No? then try \'eg\' command', inline = False)
