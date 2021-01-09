@@ -125,7 +125,7 @@ async def leaderboard(ctx, x = 5):
         leader_board[total_amount] = name
         total.append(total_amount)
     total = sorted(total, reverse = True)
-    em = discord.Embed(title = f"Top {x} Respect Points holders", description = "test", color = discord.Color.red())
+    em = discord.Embed(title = f"Top {x} Respect Points holders", description = "Leaderboard", color = discord.Color.red())
     index = 1
     for amt in total:
         id_ = leader_board[amt]
