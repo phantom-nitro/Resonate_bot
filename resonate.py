@@ -375,13 +375,13 @@ async def bm(ctx):
         await ctx.send("Chances of getting BlackMarket `now`: 100% <:stonks:780803621260099606>")
 
 
-@cooldown(1, 5, BucketType.user)
+@cooldown(1, 1, BucketType.user)
 @client.command(aliases = ["quote", "quotes"])
 async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
     if te is None:
         results = random.choices(quote_eg_joke.valfinal)
         await ctx.send(*results)
-        await ctx.send("`Cooldown 5 seconds`")
+        await ctx.send("`Cooldown 1 seconds`")
         results = random.choices(events, weights = [50, 50])
         if results == [1]:
             await ctx.send(f'{ctx.author.name} Respect +')
