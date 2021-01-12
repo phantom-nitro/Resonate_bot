@@ -382,14 +382,14 @@ async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
         results = random.choices(quote_eg_joke.valfinal)
         await ctx.send(*results)
         await ctx.send("`Cooldown 1 seconds`")
-        results = random.choices(events, weights = [60, 40])
+        results = random.choices(events, weights = [58, 42])
         if results == [1]:
-            await ctx.send(f'{ctx.author.name} Respect + 5')
+            await ctx.send(f'{ctx.author.name} Respect + 4')
             await open_account_respect(ctx.author)
             users = await get_respect_data()
             user = ctx.author
 
-            respect_points = 5
+            respect_points = 4
 
             users[str(user.id)]["respect"] += respect_points
             with open("respect.json", "w") as f:
