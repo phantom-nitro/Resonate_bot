@@ -382,7 +382,7 @@ async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
         results = random.choices(quote_eg_joke.valfinal)
         await ctx.send(*results)
         await ctx.send("`Cooldown 1 seconds`")
-        results = random.choices(events, weights = [50, 50])
+        results = random.choices(events, weights = [60, 40])
         if results == [1]:
             await ctx.send(f'{ctx.author.name} Respect + 5')
             await open_account_respect(ctx.author)
