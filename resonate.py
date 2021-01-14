@@ -384,12 +384,12 @@ async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
         await ctx.send("`Cooldown 1 seconds`")
         results = random.choices(events, weights = [58, 42])
         if results == [1]:
-            await ctx.send(f'{ctx.author.name} Respect + 4')
+            await ctx.send(f'{ctx.author.name} Respect + 5')
             await open_account_respect(ctx.author)
             users = await get_respect_data()
             user = ctx.author
 
-            respect_points = 4
+            respect_points = 5
 
             users[str(user.id)]["respect"] += respect_points
             with open("respect.json", "w") as f:
@@ -402,7 +402,7 @@ async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
 
 @client.command(aliases = ["easteregg"])
 async def eg(ctx):
-    results = random.choices(events, weights = [95, 5])
+    results = random.choices(events, weights = [94, 6])
     if results == [1]:
         await ctx.send('`You need to try hard to get the code`')
     else:
