@@ -78,10 +78,14 @@ async def d(ctx, *, msg = 26):
 	inputnumber = msg
 	iteration = 2*(inputnumber-1)
 	alphabets = list(string.ascii_lowercase)
+	em = discord.Embed(title = "+", color = discord.Color.red())
 	a1 = [*alphabets[1:inputnumber][::-1]]
 	a2 = [*alphabets[0:inputnumber]]
 	k = a1 + a2
-	await ctx.send(f"{k}")
+	em.add_field(name = "\u200b", value = k, inline = False)
+	#k = a1 + a2
+	#await ctx.send(f"{k}")
+	await ctx.send(embed = em)
 	
 
 @client.command(aliases = ["bal"])
