@@ -72,7 +72,6 @@ async def poll(ctx,*,msg):
     await message_.add_reaction("🦖")
     await ctx.message.delete()
 
-
 @client.command(aliases = ["bal"])
 async def balance(ctx):
     await open_account(ctx.author)
