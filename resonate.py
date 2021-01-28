@@ -57,6 +57,22 @@ async def rip(ctx,member:discord.Member=None):
     rip.save('prip.png')
     await ctx.send(file = discord.File('prip.png'))
 
+@client.command()
+async def poll(ctx,*,msg):
+    channel = ctx.channel
+    try:
+        op1,op2 = msg.split("or")
+        txt = f"React with 🐒 for {op1} or 🦖 for {op2}"
+    except:
+        await channel.send("Corrent syntax is: [choice1] or [choice2]")
+        return
+    embed = discord.Embed(title="poll",discription = txt,coloe = discord.Colour.red())
+    message_ = await channel.send(embed=embed)
+    await message_.add_reaction("🐒")
+    await message_.add_reaction("🦖")
+    await ctx.message.delete()
+
+
 @client.command(aliases = ["bal"])
 async def balance(ctx):
     await open_account(ctx.author)
