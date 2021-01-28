@@ -4,6 +4,8 @@ import random
 import quote_eg_joke
 import time
 import json
+from PIL import Image,ImageFilter
+from io import BytesIO
 from typing import Optional
 from discord.ext import commands, tasks
 from discord.ext.commands import cooldown, BucketType
