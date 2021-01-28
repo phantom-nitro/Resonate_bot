@@ -81,7 +81,7 @@ async def d(ctx):
 	a1 = [*alphabets[1:inputnumber][::-1]]
 	a2 = [*alphabets[0:inputnumber]]
 	k = a1 + a2
-	await ctx.send(f"{*k}")
+	await ctx.send(f"{k}")
 	
 
 @client.command(aliases = ["bal"])
