@@ -74,7 +74,7 @@ async def poll(ctx,*,msg):
     await ctx.message.delete()
 	
 @client.command()
-async def del(ctx,*,msg):
+async def delete(ctx,*,msg):
 	await ctx.message.delete()
 	await ctx.message.delete()
 	await ctx.message.delete()
