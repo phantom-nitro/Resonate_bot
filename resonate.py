@@ -42,6 +42,21 @@ async def on_command_error(error, ctx):
 async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
 
+@client.command()
+async def rip(ctx,member:discord.Member=None):
+    if not member:
+        member =  ctx.author
+
+    rip = Image.open('rip.png')
+    asset = member.avatar_url_as(size=128)
+    data = BytesIO(await asset.read())
+    pfp = Image.open(data)
+
+    pfp = pfp.resize((257,187))
+    rip.paste(pfp,(67,258))
+    rip.save('prip.png')
+    await ctx.send(file = discord.File('prip.png'))
+
 @client.command(aliases = ["bal"])
 async def balance(ctx):
     await open_account(ctx.author)
