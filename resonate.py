@@ -66,7 +66,7 @@ async def poll(ctx,*,msg):
     except:
         await channel.send("Corrent syntax is: [choice1] or [choice2]")
         return
-    embed = discord.Embed(title="poll",discription = txt,coloe = discord.Colour.red())
+    embed = discord.Embed(title="poll",discription = txt,color = discord.Colour.red())
     message_ = await channel.send(embed=embed)
     await message_.add_reaction("🐒")
     await message_.add_reaction("🦖")
