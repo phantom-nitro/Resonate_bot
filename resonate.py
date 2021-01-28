@@ -73,12 +73,6 @@ async def poll(ctx,*,msg):
     await message_.add_reaction("🇧")
     await ctx.message.delete()
 	
-@client.command()
-async def delete(ctx,*,msg):
-	await ctx.message.delete()
-	await ctx.message.delete()
-	await ctx.message.delete()
-	
 @client.command(aliases = ["bal"])
 async def balance(ctx):
     await open_account(ctx.author)
