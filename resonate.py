@@ -62,14 +62,14 @@ async def poll(ctx,*,msg):
     channel = ctx.channel
     try:
         op1,op2 = msg.split("or")
-        txt = f"React with 🐒 for {op1} or 🦖 for {op2}"
+        txt = f"React with :regional_indicator_a: for {op1} or :regional_indicator_b: for {op2}"
     except:
         await channel.send("Correct syntax is: [choice1] or [choice2]")
         return
     embed = discord.Embed(title="poll",description = txt,colour = discord.Colour.red())
     message_ = await channel.send(embed=embed)
-    await message_.add_reaction("🐒")
-    await message_.add_reaction("🦖")
+    await message_.add_reaction(":regional_indicator_a:")
+    await message_.add_reaction(":regional_indicator_b:")
     await ctx.message.delete()
 
 @client.command(aliases = ["bal"])
