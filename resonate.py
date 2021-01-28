@@ -4,6 +4,7 @@ import random
 import quote_eg_joke
 import time
 import json
+import string
 from PIL import Image,ImageFilter
 from io import BytesIO
 from typing import Optional
@@ -71,6 +72,14 @@ async def poll(ctx,*,msg):
     await message_.add_reaction("🇦")
     await message_.add_reaction("🇧")
     await ctx.message.delete()
+	
+@client.command()
+async def d(ctx):
+	inputnumber = 26
+	iteration = 2*(inputnumber-1)
+	alphabets = list(string.ascii_lowercase)
+	await.ctx.send(*alphabets[1:inputnumber][::-1], *alphabets[0:inputnumber], sep = '-')
+	
 
 @client.command(aliases = ["bal"])
 async def balance(ctx):
