@@ -74,8 +74,8 @@ async def poll(ctx,*,msg):
     await ctx.message.delete()
 	
 @client.command()
-async def d(ctx):
-	inputnumber = 26
+async def d(ctx, *, msg = 26):
+	inputnumber = msg
 	iteration = 2*(inputnumber-1)
 	alphabets = list(string.ascii_lowercase)
 	a1 = [*alphabets[1:inputnumber][::-1]]
