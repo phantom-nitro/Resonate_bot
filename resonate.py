@@ -64,9 +64,9 @@ async def poll(ctx,*,msg):
         op1,op2 = msg.split("or")
         txt = f"React with 🐒 for {op1} or 🦖 for {op2}"
     except:
-        await channel.send("Corrent syntax is: [choice1] or [choice2]")
+        await channel.send("Correct syntax is: [choice1] or [choice2]")
         return
-    embed = discord.Embed(title="poll",discription = txt,color = discord.Colour.red())
+    embed = discord.Embed(title="poll",description = txt,colour = discord.Colour.red())
     message_ = await channel.send(embed=embed)
     await message_.add_reaction("🐒")
     await message_.add_reaction("🦖")
