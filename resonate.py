@@ -78,7 +78,8 @@ async def d(ctx):
 	inputnumber = 26
 	iteration = 2*(inputnumber-1)
 	alphabets = list(string.ascii_lowercase)
-	await.ctx.send("*alphabets[1:inputnumber][::-1], *alphabets[0:inputnumber]")
+	k = str(*alphabets[1:inputnumber][::-1], *alphabets[0:inputnumber], sep = '-')
+	await ctx.send(k)
 	
 
 @client.command(aliases = ["bal"])
