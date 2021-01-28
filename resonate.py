@@ -68,8 +68,8 @@ async def poll(ctx,*,msg):
         return
     embed = discord.Embed(title="poll",description = txt,colour = discord.Colour.red())
     message_ = await channel.send(embed=embed)
-    await message_.add_reaction("{:regional_indicator_a:}")
-    await message_.add_reaction("{:regional_indicator_b:}")
+    await message_.add_reaction("🇦")
+    await message_.add_reaction("🇧")
     await ctx.message.delete()
 
 @client.command(aliases = ["bal"])
