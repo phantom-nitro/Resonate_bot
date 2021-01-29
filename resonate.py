@@ -30,7 +30,7 @@ players = {}
 #template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
 #chat = Chat(template_file_path)
 
-
+@client.event
 async def on_ready():
     change_status.start()
     
