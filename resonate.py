@@ -309,3 +309,5 @@ async def open_account_respect(user):
         users = {'user_id':str(user.id),'user_name':str(user),"respect":0}  
     col.insert_one(users)
     return True
+
+client.run(token)
