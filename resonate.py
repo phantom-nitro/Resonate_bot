@@ -304,6 +304,8 @@ async def egc(ctx, *, message):
 async def open_account_respect(user):
     users=col.find_one({'user_id':str(user.id)})
     if users:
+        if users['user_name'] != str(user):
+            col.update_one({'user_id':str(user.id)},{"$set":{"user_name": str(user)}})
         return False
     else:
         users = {'user_id':str(user.id),'user_name':str(user),"respect":0}  
