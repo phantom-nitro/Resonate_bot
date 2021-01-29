@@ -79,7 +79,7 @@ async def poll(ctx,*,msg):
 async def leaderboard(ctx, x = 5):
     total = []
     id_2 = []
-    for user in col.find():
+    for user in col.find().sort("respect",-1):
         name = user['user_name']
         total_amount = user["respect"]
         total.append(total_amount)
