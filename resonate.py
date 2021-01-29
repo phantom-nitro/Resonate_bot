@@ -296,7 +296,15 @@ async def egc(ctx, *, message):
     else:
         await ctx.send('This is not a Special code')
 
+async def open_account_respect(user):
 
+    users=col.find_one({'user_id':str(user.id)})
+    if users:
+        return False
+    else:
+        users = {'user_id':str(user.id),"respect":0}  
+    col.insert_one(users)
+    return True
 
 
 
