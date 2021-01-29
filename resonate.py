@@ -33,7 +33,7 @@ players = {}
 
 async def on_ready():
     change_status.start()
-    general_channel = client.get_channel(759482792265908238)
+    
 @client.event
 async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandOnCooldown):
