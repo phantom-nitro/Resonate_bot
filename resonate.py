@@ -12,12 +12,9 @@ from discord.ext import commands, tasks
 from discord.ext.commands import cooldown, BucketType
 from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument, CommandOnCooldown)
 from random import choice
-import pymongo
-import dns
+#from chatbot import Chat, register_call
 
-client = pymongo.MongoClient("mongodb+srv://goucric:gnq316@cluster0.ymixq.mongodb.net/discordBot?retryWrites=true&w=majority")
-db = client['discordBot']
-col = db['respect']
+#os.chdir("C:\\Users\\Admin\\Document\\python")
 
 events = [1, 0]
 token = os.getenv('BOT_TOKEN')
@@ -76,12 +73,27 @@ async def poll(ctx,*,msg):
     await message_.add_reaction("🇧")
     await ctx.message.delete()
 	
+@client.command(aliases = ["bal"])
+async def balance(ctx):
+    await open_account(ctx.author)
+    user = ctx.author
+    users = await get_bank_data()
+
+    wallet_amt = users[str(user.id)]["wallet"]
+    bank_amt = users[str(user.id)]["bank"]
+
+    em = discord.Embed(title = f"{ctx.author.name}'s balance", color = discord.Color.red())
+    em.add_field(name = 'Wallet balance', value = wallet_amt, inline = False)
+    em.add_field(name = 'Bank balance', value = bank_amt, inline = False)
+    await ctx.send(embed = em)
+
 @client.command(aliases = ["res"])
 async def respect(ctx):
     await open_account_respect(ctx.author)
     user = ctx.author
-    users=col.find_one({'user_id':str(user.id)})
-    respect_amt = users["respect"]
+    users = await get_respect_data()
+
+    respect_amt = users[str(user.id)]["respect"]
     if respect_amt < 5:
         val = 'Noobie'
     elif respect_amt < 10:
@@ -131,6 +143,185 @@ async def respect(ctx):
     em.add_field(name = 'Respect', value = respect_amt)
     em.add_field(name = 'Status', value = val)
     await ctx.send(embed = em)
+
+
+
+@client.command(aliases = ["lb"])
+async def leaderboard(ctx, x = 5):
+
+    users = await get_respect_data()
+    leader_board = {}
+    total = []
+    for user in users:
+        name = int(user)
+        total_amount = users[user]["respect"]
+        leader_board[total_amount] = name
+        total.append(total_amount)
+    total = sorted(total, reverse = True)
+    em = discord.Embed(title = f"Top {x} Respect Points holders", description = "Leaderboard", color = discord.Color.red())
+    index = 1
+    for amt in total:
+        id_ = leader_board[amt]
+        member = client.get_user(id_)
+        em.add_field(name = f"{index}. {member}", value = f"{amt}", inline = False)
+        if index == x:
+            break
+        else:
+            index += 1
+    await ctx.send(embed = em)
+
+
+@client.command(aliases = ["req", "request"])
+async def beg(ctx):
+    await open_account(ctx.author)
+    users = await get_bank_data()
+    user = ctx.author
+
+    earnings = random.randrange(1001)
+    await ctx.send(f"Resonate gave **{ctx.author}** {earnings} coins!")
+
+    users[str(user.id)]["wallet"] += earnings
+    with open("mainbank.json", "w") as f:
+        json.dump(users, f)
+
+@client.command(aliases = ["with"])
+async def withdraw(ctx, amount = None):
+    await open_account(ctx.author)
+    if amount == None:
+        await ctx.send(f"**{ctx.author}** Please enter the Amount")
+        return
+    bal = await update_bank(ctx.author)
+    amount = int(amount)
+    if amount>bal[1]:
+        await ctx.send(f"**{ctx.author}** You don't have that much Money")
+        return
+    if amount<0:
+        await ctx.send(f"**{ctx.author}** Amount must be Positive")
+        return
+
+    await update_bank(ctx.author, amount)
+    await update_bank(ctx.author, -1*amount, "bank")
+    await ctx.send(f"**{ctx.author}** withdrew {amount} coins")
+
+@client.command(aliases = ["dep"])
+async def deposit(ctx, amount = None):
+    await open_account(ctx.author)
+    if amount == None:
+        await ctx.send(f"**{ctx.author}** Please enter the Amount")
+        return
+    bal = await update_bank(ctx.author)
+    amount = int(amount)
+    if amount>bal[0]:
+        await ctx.send(f"**{ctx.author}** You don't have that much Money")
+        return
+    if amount<0:
+        await ctx.send(f"**{ctx.author}** Amount must be Positive")
+        return
+
+    await update_bank(ctx.author, -1*amount)
+    await update_bank(ctx.author, amount, "bank")
+    await ctx.send(f"**{ctx.author}** deposited {amount} coins")
+
+@client.command(aliases = ["gift"])
+async def send(ctx, member:discord.Member, amount = None):
+    await open_account(ctx.author)
+    await open_account(member)
+    if amount == None:
+        await ctx.send(f"**{ctx.author}** Please enter the Amount")
+        return
+    bal = await update_bank(ctx.author)
+    amount = int(amount)
+    if amount>bal[1]:
+        await ctx.send(f"**{ctx.author}** You don't have that much Money")
+        return
+    if amount<0:
+        await ctx.send(f"**{ctx.author}** Amount must be Positive")
+        return
+
+    await update_bank(ctx.author, -1*amount, "bank")
+    await update_bank(member, amount, "bank")
+    await ctx.send(f"**{ctx.author}** gave {amount} coins to {member}")
+
+@client.command()
+async def slots(ctx, amount = None):
+    await open_account(ctx.author)
+    if amount == None:
+        await ctx.send(f"**{ctx.author}** Please enter the Amount")
+        return
+    bal = await update_bank(ctx.author)
+    amount = int(amount)
+    if amount>bal[0]:
+        await ctx.send(f"**{ctx.author}** You don't have that much Money")
+        return
+    if amount<0:
+        await ctx.send(f"**{ctx.author}** Amount must be Positive")
+        return
+
+    final = []
+    for i in range(3):
+        a = random.choice(["<:meme_stare:787584294977667104>", "<:meme_cj_happy:780812567252828170>", "<:meme_shrek:780808598523215902>"])
+        final.append(a)
+
+    await ctx.send(str(final))
+
+    if final[0] == final[1] and final[0] == final[2] and final[2] == final[1]:
+        await update_bank(ctx.author, 2*amount)
+        await ctx.send(f"{ctx.author} You Won double the amount you bet!")
+    else:
+        await update_bank(ctx.author, -1*amount)
+        await ctx.send(f"{ctx.author} You Lost")
+
+
+
+async def open_account(user):
+
+    users = await get_bank_data()
+    if str(user.id) in users:
+        return False
+    else:
+        users[str(user.id)] = {}
+        users[str(user.id)]["wallet"] = 0
+        users[str(user.id)]["bank"] = 0
+
+    with open("mainbank.json", "w") as f:
+        json.dump(users, f)
+    return True
+async def open_account_respect(user):
+
+    users = await get_respect_data()
+    if str(user.id) in users:
+        return False
+    else:
+        users[str(user.id)] = {}
+        users[str(user.id)]["respect"] = 0
+
+    with open("respect.json", "w") as f:
+        json.dump(users, f)
+    return True
+async def get_respect_data():
+    with open("respect.json", "r") as f:
+        users = json.load(f)
+    return users
+
+async def get_bank_data():
+    with open("mainbank.json", "r") as f:
+        users = json.load(f)
+    return users
+
+async def update_bank(user, change = 0, mode = 'wallet'):
+    users = await get_bank_data()
+    users[str(user.id)][mode] += change
+    with open("mainbank.json", "w") as f:
+        json.dump(users, f)
+    bal = [users[str(user.id)]['wallet'], users[str(user.id)]['bank']]
+    return bal
+
+#@client.command(pass_context = True)
+#async def ai(ctx, *, message):
+#    result = chat.respond(message)
+
+#    embed = discord.Embed(title = "Resonate AI", description = result, color = (0xF7FF00))
+#    await ctx.send(embed = embed)
 
 
 @client.command(name='ping', help = 'return Latency')
@@ -190,19 +381,21 @@ async def help(ctx, cmd: Optional[str]):
 
 @client.command(name = 'u')
 async def u(ctx):
-    await open_account_respect(ctx.author)
-    user = ctx.author
-    users=col.find_one({'user_id':str(user.id)})	
     results = random.choices(events, weights = [95, 5])
     if results == [1]:
         await ctx.send('no u')
     else:
         await ctx.send(f"Ahh! I'm tired. {ctx.author.name} won")
         await ctx.send('Respect + 5')
-	
+        await open_account_respect(ctx.author)
+        users = await get_respect_data()
+        user = ctx.author
+
         respect_points = 5
-        total = users["wallet"] + respect_points
-	col.update_one({'user_id':str(user.id)}, {"$set": { "respect":  total}})
+
+        users[str(user.id)]["respect"] += respect_points
+        with open("respect.json", "w") as f:
+            json.dump(users, f)
 
 
 @client.command(aliases = ["blackmarket"])
@@ -226,13 +419,14 @@ async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
         if results == [1]:
             await ctx.send(f'{ctx.author.name} Respect + 5')
             await open_account_respect(ctx.author)
+            users = await get_respect_data()
             user = ctx.author
-            users=col.find_one({'user_id':str(user.id)})
 
             respect_points = 5
-            total = users["wallet"] + respect_points
-	    col.update_one({'user_id':str(user.id)}, {"$set": { "respect":  total}})
 
+            users[str(user.id)]["respect"] += respect_points
+            with open("respect.json", "w") as f:
+                json.dump(users, f)
     elif te == 'add':
         quote_eg_joke.valnew.append(cmd)
         print(cmd)
@@ -248,13 +442,15 @@ async def eg(ctx):
         results = random.choices(quote_eg_joke.egg)
         await ctx.send(*results)
         await ctx.send(f'Congradulations! {ctx.author.name} has Unlocked Secret command. Respect + 10 <:anime_awoo:780805005808107530>')
-        await open_account(ctx.author)
+        await open_account_respect(ctx.author)
+        users = await get_respect_data()
         user = ctx.author
-        users=col.find_one({'user_id':str(user.id)})
 
         respect_points = 10
-        total = users["wallet"] + respect_points
-	col.update_one({'user_id':str(user.id)}, {"$set": { "respect":  total}})
+
+        users[str(user.id)]["respect"] += respect_points
+        with open("respect.json", "w") as f:
+            json.dump(users, f)
 
 
 @client.command(aliases = ["eastereggcommand"])
@@ -296,15 +492,7 @@ async def egc(ctx, *, message):
     else:
         await ctx.send('This is not a Special code')
 
-async def open_account_respect(user):
 
-    users=col.find_one({'user_id':str(user.id)})
-    if users:
-        return False
-    else:
-        users = {'user_id':str(user.id),"respect":0}  
-    col.insert_one(users)
-    return True
 
 
 
