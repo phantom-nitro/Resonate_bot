@@ -194,9 +194,9 @@ async def ping(ctx):
 	await ctx.send(f':zap: Latency: {round(client.latency*1000)}ms')
 	
 @client.command(pass_context = True)
-async def echo(ctx, msg, n: Optional[int]):
-	if n > 100:
-		await ctx.send('echo should not be greater than 100')
+async def echo(ctx, n, *, msg):
+	if n > 50:
+		await ctx.send('echo should not be greater than 50')
 	else:
 		for x in range(n):
 			await ctx.send(msg)
