@@ -191,7 +191,7 @@ async def respect(ctx):
 
 @client.command(name='ping')
 async def ping(ctx):
-	await ctx.send('Pong! {0}'.format(round(bot.latency, 1)))
+	await ctx.send('Pong! {0}'.format(round(client.latency, 1)))
 	#(f':zap: Latency: {round(client.latency*1000)}ms')
 
 
