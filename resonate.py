@@ -14,6 +14,12 @@ from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredA
 from random import choice
 import pymongo
 import dns
+import praw
+reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
+                    client_secret = "YgPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
+                    username = "tempgoutham",
+                    password = "gnq316",
+                    user_agent = "pythonpraw")
 
 client = pymongo.MongoClient("mongodb+srv://goucric:gnq316@cluster0.ymixq.mongodb.net/discordBot?retryWrites=true&w=majority")
 db = client['discordBot']
@@ -33,7 +39,21 @@ players = {}
 @client.event
 async def on_ready():
     change_status.start()
-    
+
+@client.command()
+async def meme(ctx):
+    subreddit = reddit.subreddit("memes")
+    all_subs = []
+    top = subreddit.top(limit = 50)
+    for submission in top:
+        all_subs.append(submission)
+    random_sub = random.choice(all_subs)
+    name = random_sub.title
+    url = random_sub.url
+    em = discord.Embed(title = name)
+    em.set_image(url = url)
+    await ctx.send(embed = em)
+
 @client.event
 async def on_command_error(error, ctx):
     if isinstance(error, commands.CommandOnCooldown):
