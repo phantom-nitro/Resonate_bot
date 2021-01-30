@@ -68,33 +68,6 @@ async def booty(ctx):
     em.set_image(url = url)
     await ctx.send(embed = em)
 	
-@client.command()
-async def blowjob(ctx):
-    subreddit = reddit.subreddit("BlowJob")
-    all_subs = []
-    top = subreddit.top(limit = 50)
-    for submission in top:
-        all_subs.append(submission)
-    random_sub = random.choice(all_subs)
-    name = random_sub.title
-    url = random_sub.url
-    em = discord.Embed(title = name)
-    em.set_image(url = url)
-    await ctx.send(embed = em)
-	
-@client.command()
-async def porngif(ctx):
-    subreddit = reddit.subreddit("porngif")
-    all_subs = []
-    top = subreddit.top(limit = 100)
-    for submission in top:
-        all_subs.append(submission)
-    random_sub = random.choice(all_subs)
-    name = random_sub.title
-    url = random_sub.url
-    em = discord.Embed(title = name)
-    em.set_image(url = url)
-    await ctx.send(embed = em)
 
 @client.event
 async def on_command_error(error, ctx):
