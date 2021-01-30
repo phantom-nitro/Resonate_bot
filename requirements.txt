@@ -3,3 +3,4 @@ pillow
 pymongo
 dnspython
 requests
+praw
