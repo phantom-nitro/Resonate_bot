@@ -192,16 +192,15 @@ async def respect(ctx):
 @client.command(pass_context = True)
 async def ping(ctx):
 	await ctx.send(f':zap: Latency: {round(client.latency*1000)}ms')
-
-@client.command(pass_context=True)
-async def pingu(ctx):
-    """ Pong! """
-    await delete_message(ctx.message)
-    before = time.monotonic()
-    message = await ctx.send("Pong!")
-    ping = (time.monotonic() - before) * 1000
-    await message.edit(content=f"Pong!  `{int(ping)}ms`")
-
+	
+@client.command(pass_context = True)
+async def echo(ctx, *, msg, n = 1):
+	if n > 100:
+		await ctx.send('echo should not be greater than 100')
+	else:
+		for x in range(n):
+			await ctx.send(msg)
+			
 
 @client.command(pass_context = True)
 async def help(ctx, cmd: Optional[str]):
