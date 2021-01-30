@@ -69,25 +69,25 @@ async def booty(ctx):
     await ctx.send(embed = em)
 	
 @client.command()
-    async def redd(self, ctx, arg = None, arg1 = '1'):
-        await ctx.message.delete()
-        if arg == None: 
-            embed = discord.Embed(title='Invalid Command')
-            await ctx.send(embed = embed)
-        else:
-            for i in range(int(arg1)):
-                subredd = reddit.subreddit(arg).hot()
-                picked = random.randint(1, 50)
-                for i in range(0, picked):
-                    submission = next(x for x in subredd if not x.stickied)
-                embed = discord.Embed(title=f'{submission.title} in r/{arg}', description=f'By: {submission.author}\n\n{submission.selftext}', color=0x800080)
-                ext = ['jpg', 'png', 'gif', 'jpeg']
-                for o in ext:
-                    if submission.url.endswith(o):
-                        embed.set_image(url=submission.url)
-                        break
-                    else:
-                        pass
+async def redd(self, ctx, arg = None, arg1 = '1'):
+    await ctx.message.delete()
+    if arg == None: 
+        embed = discord.Embed(title='Invalid Command')
+        await ctx.send(embed = embed)
+    else:
+        for i in range(int(arg1)):
+            subredd = reddit.subreddit(arg).hot()
+            picked = random.randint(1, 50)
+            for i in range(0, picked):
+                submission = next(x for x in subredd if not x.stickied)
+            embed = discord.Embed(title=f'{submission.title} in r/{arg}', description=f'By: {submission.author}\n\n{submission.selftext}', color=0x800080)
+            ext = ['jpg', 'png', 'gif', 'jpeg']
+            for o in ext:
+                if submission.url.endswith(o):
+                    embed.set_image(url=submission.url)
+                    break
+                else:
+                    pass
                 await ctx.send(embed = embed)
                 #time.sleep(2)
 
