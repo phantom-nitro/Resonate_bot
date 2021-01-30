@@ -2,3 +2,4 @@ discord.py
 pillow
 pymongo
 dnspython
+requests
