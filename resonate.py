@@ -44,7 +44,7 @@ async def on_ready():
 async def meme(ctx):
     subreddit = reddit.subreddit("memes")
     all_subs = []
-    hot = subreddit.hot(limit = None)
+    hot = subreddit.hot(limit = 50)
     for submission in hot:
         all_subs.append(submission)
     random_sub = random.choice(all_subs)
