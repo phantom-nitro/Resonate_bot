@@ -193,7 +193,7 @@ async def respect(ctx):
 async def ping(ctx):
 	await ctx.send(f':zap: Latency: {round(client.latency*1000)}ms')
 
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def pingu(ctx):
     """ Pong! """
     await delete_message(ctx.message)
