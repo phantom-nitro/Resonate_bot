@@ -56,7 +56,7 @@ async def postmeme(ctx):
         em = discord.Embed(title = name)
         em.set_image(url = url)
         await ctx.send(embed = em)
-        await asyncio.sleep(600)
+        await asyncio.sleep(1800)
 
 
 @client.command()
