@@ -43,7 +43,7 @@ async def on_ready():
 
 @client.command(aliases = ["pm"])
 
-async def postmeme(ctx, *, msg):
+async def postmeme(ctx):
     while 1:
         subreddit = reddit.subreddit("memes")
         all_subs = []
@@ -56,7 +56,7 @@ async def postmeme(ctx, *, msg):
         em = discord.Embed(title = name)
         em.set_image(url = url)
         await ctx.send(embed = em)
-        await asyncio.sleep(5)
+        await asyncio.sleep(600)
 
 
 @client.command()
