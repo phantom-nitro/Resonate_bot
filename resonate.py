@@ -41,6 +41,7 @@ async def on_ready():
     change_status.start()
 
 @client.command(aliases = ["pm"])
+'''
 async def postmeme(ctx):
     while 1:
         subreddit = reddit.subreddit("memes")
@@ -55,6 +56,7 @@ async def postmeme(ctx):
         em.set_image(url = url)
         await ctx.send(embed = em)
         time.sleep(600)
+'''
 
 @client.command()
 async def meme(ctx):
