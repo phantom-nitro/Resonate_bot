@@ -40,6 +40,22 @@ players = {}
 async def on_ready():
     change_status.start()
 
+@client.command(aliases = ["pm"])
+async def postmeme(ctx):
+    while 1:
+        subreddit = reddit.subreddit("memes")
+        all_subs = []
+        hot = subreddit.hot(limit = 50)
+        for submission in hot:
+            all_subs.append(submission)
+        random_sub = random.choice(all_subs)
+        name = random_sub.title
+        url = random_sub.url
+        em = discord.Embed(title = name)
+        em.set_image(url = url)
+        await ctx.send(embed = em)
+        time.sleep(600)
+
 @client.command()
 async def meme(ctx):
     subreddit = reddit.subreddit("memes")
