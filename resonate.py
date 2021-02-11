@@ -15,6 +15,7 @@ from random import choice
 import pymongo
 import dns
 import praw
+import asyncio
 reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
                     client_secret = "YgPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
                     username = "tempgoutham",
@@ -41,7 +42,7 @@ async def on_ready():
     change_status.start()
 
 @client.command(aliases = ["pm"])
-'''
+
 async def postmeme(ctx):
     while 1:
         subreddit = reddit.subreddit("memes")
@@ -55,8 +56,8 @@ async def postmeme(ctx):
         em = discord.Embed(title = name)
         em.set_image(url = url)
         await ctx.send(embed = em)
-        time.sleep(600)
-'''
+        await asyncio.sleep(20)
+
 
 @client.command()
 async def meme(ctx):
