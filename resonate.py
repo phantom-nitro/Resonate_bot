@@ -114,21 +114,59 @@ async def rip(ctx,member:discord.Member=None):
     rip.save('prip.png')
     await ctx.send(file = discord.File('prip.png'))
 
+def remove_match_char(list1, list2): 
+    for i in range(len(list1)) : 
+        for j in range(len(list2)) :
+            if list1[i] == list2[j] : 
+                c = list1[i]  
+                list1.remove(c) 
+                list2.remove(c)  
+                list3 = list1 + ["*"] + list2  
+                return [list3, True] 
+   
+    list3 = list1 + ["*"] + list2 
+    return [list3, False] 
+
 @client.command()
-async def poll(ctx,*,msg):
+async def flames(ctx,*,msg):
+    print("entered")
     channel = ctx.channel
     try:
-        op1,op2 = msg.split("or")
-        txt = f"React with :regional_indicator_a: for {op1} or :regional_indicator_b: for {op2}"
+        name1,name2 = msg.split("and")
     except:
-        await channel.send("Correct syntax is: [choice1] or [choice2]")
-        return
-    embed = discord.Embed(title="poll",description = txt,colour = discord.Colour.red())
-    message_ = await channel.send(embed=embed)
-    await message_.add_reaction("🇦")
-    await message_.add_reaction("🇧")
-    await ctx.message.delete()
-
+        await channel.send("Correct syntax is: ;flames [name1] and [name2]")
+        return 
+    name1 = name1.lower()
+    name1.replace(" ","")
+    name1_list = list(name1)
+    name2 = name2.lower()
+    name2.replace(" ","")
+    name2_list = list(name2)
+    p = True
+    while p:
+        ret_list = remove_match_char(name1_list,name2_list)
+        con_list = ret_list[0]
+        p = ret_list[1]
+        star_index = con_list.index("*")
+        name1_list = con_list[: star_index]
+        name2_list = con_list[star_index+1 :]
+    count = len(name1_list) + len(name2_list)
+    result = ["Friends", "Love", "Affection", "Marriage", "Enemy", "Siblings"]
+    while len(result) > 1 : 
+        split_index = (count % len(result) - 1)  
+        if split_index >= 0 : 
+            right = result[split_index + 1 : ] 
+            left = result[ : split_index] 
+            result = right + left 
+        else : 
+            result = result[ : len(result) - 1]  
+    txt = "Relationship status :"+result[0] 
+    print(txt)
+    embed = discord.Embed(title="Happy Valentines Day",description = txt,colour = discord.Colour.red())
+    message_ = await channel.send(embed=embed)  
+    await message_.add_reaction("❤")
+     
+	
 @client.command(aliases = ["lb"])
 async def leaderboard(ctx, x = 5):
     total = []
