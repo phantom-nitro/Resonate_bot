@@ -60,7 +60,7 @@ async def postmeme(ctx):
         await asyncio.sleep(1800)
 
 @client.command(name = 'covid')
-async def covid2(ctx,countryName):
+async def covid(ctx,countryName):
     if countryName is None:
                 embed=discord.Embed(title="This command is used like this: ```;covid [country]```", colour=0xff0000, timestamp=ctx.message.created_at)
                 await ctx.send(embed=embed)
