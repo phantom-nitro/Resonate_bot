@@ -377,13 +377,13 @@ async def q(ctx, te: Optional[str], *, cmd: Optional[str]):
         results = random.choices(quote_eg_joke.valfinal)
         await ctx.send(*results)
         await ctx.send("`Cooldown 1 seconds`")
-        results = random.choices(events, weights = [58, 42])
+        results = random.choices(events, weights = [55,45])
         if results == [1]:
             await open_account_respect(ctx.author)
-            await ctx.send(f'{ctx.author.name} Respect + 5')
+            await ctx.send(f'{ctx.author.name} Respect + 10')
             user = ctx.author
             users=col.find_one({'user_id':str(user.id)})
-            respect_points = 5
+            respect_points = 10
             total = users["respect"] + respect_points
             col.update_one({'user_id':str(user.id)},{"$set":{"respect": total}})
 
@@ -402,10 +402,10 @@ async def eg(ctx):
         await open_account_respect(ctx.author)
         results = random.choices(quote_eg_joke.egg)
         await ctx.send(*results)
-        await ctx.send(f'Congradulations! {ctx.author.name} has Unlocked Secret command. Respect + 10 <:anime_awoo:780805005808107530>')
+        await ctx.send(f'Congradulations! {ctx.author.name} has Unlocked Secret command. Respect + 50 <:anime_awoo:780805005808107530>')
         user = ctx.author
         users=col.find_one({'user_id':str(user.id)})
-        respect_points = 10
+        respect_points = 50
         total = users["respect"] + respect_points
         col.update_one({'user_id':str(user.id)},{"$set": {"respect":total}})
 
