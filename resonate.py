@@ -17,7 +17,7 @@ import dns
 import praw
 import asyncio
 import requests
-import music
+from music_cog import music_cog
 
 
 reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
@@ -41,10 +41,10 @@ players = {}
 #template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
 #chat = Chat(template_file_path)
 
-cogs = [music]
-for i in range(len(cogs)):
-	cogs[i].setup(client)
-
+#cogs = [music]
+#for i in range(len(cogs)):
+#	cogs[i].setup(client)
+Bot.add_cog(music_cog(Bot))
 
 @client.event
 async def on_ready():
