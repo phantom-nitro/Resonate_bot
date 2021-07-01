@@ -5,3 +5,4 @@ dnspython
 requests
 praw
 youtube_dl
+ffmpeg
