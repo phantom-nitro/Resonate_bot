@@ -17,6 +17,12 @@ import dns
 import praw
 import asyncio
 import requests
+import music
+
+cogs = [music]
+for i in range(len(cogs)):
+	cogs[i].setup()
+	
 
 reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
                     client_secret = "YgPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
