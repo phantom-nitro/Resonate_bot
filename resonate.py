@@ -44,7 +44,7 @@ players = {}
 #cogs = [music]
 #for i in range(len(cogs)):
 #	cogs[i].setup(client)
-Bot.add_cog(music_cog(Bot))
+client.add_cog(music_cog(Bot))
 
 @client.event
 async def on_ready():
