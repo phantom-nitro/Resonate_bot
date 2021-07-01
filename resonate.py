@@ -379,7 +379,7 @@ async def bm(ctx):
 
 
 @cooldown(1, 1, BucketType.user)
-@client.command(aliases = ["quote", "quotes"])
+@client.command(aliases = ["quotes"])
 async def quote(ctx, te: Optional[str], *, cmd: Optional[str]):
     if te is None:
         results = random.choices(quote_eg_joke.valfinal)
