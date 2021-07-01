@@ -17,8 +17,6 @@ import dns
 import praw
 import asyncio
 import requests
-from music import music_cog
-
 
 reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
                     client_secret = "YgPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
@@ -46,8 +44,6 @@ players = {}
 @client.event
 async def on_ready():
     change_status.start()
-
-bot.add_cog(music_cog(bot))
 
 @client.command(aliases = ["pm"])
 
