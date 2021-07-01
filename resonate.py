@@ -19,10 +19,6 @@ import asyncio
 import requests
 import music
 
-cogs = [music]
-for i in range(len(cogs)):
-	cogs[i].setup()
-	
 
 reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
                     client_secret = "YgPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
@@ -45,6 +41,9 @@ players = {}
 #template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
 #chat = Chat(template_file_path)
 
+cogs = [music]
+for i in range(len(cogs)):
+	cogs[i].setup()
 
 
 @client.event
