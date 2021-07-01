@@ -4,3 +4,4 @@ pymongo
 dnspython
 requests
 praw
+youtube_dl
