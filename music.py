@@ -20,5 +20,5 @@ class music(commands.Cog):
 	async def disconnect(self, ctx):
 		await ctx.voice_client.disconnect()
       
-#def setup(client):
-#	client.add_cog(music(client)
+def setup(client):
+	client.add_cog(music(client)
