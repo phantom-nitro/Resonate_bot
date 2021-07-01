@@ -43,7 +43,7 @@ players = {}
 
 cogs = [music]
 for i in range(len(cogs)):
-	cogs[i].setup()
+	cogs[i].setup(client)
 
 
 @client.event
