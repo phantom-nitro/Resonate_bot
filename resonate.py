@@ -37,7 +37,7 @@ token = os.getenv('BOT_TOKEN')
 
 client = commands.Bot(command_prefix = ';')
 client.remove_command('help')
-status = ['Music', 'Movie', 'Surangani Bad Words Remix', 'Adichi Thooku Bad Words Remix', 'Rocket League', 'Rainbow Six Siege','Valorant', 'Slapping Hydrogene', 'VJ mulla', 'Ankan PRO', 'Prime Leader Sudeep', 'Sao Sao_/\_', 'Get Burgified', 'Ankan Hassan', 'Motta']
+status = ['Music', 'Movie', 'Rocket League', 'Minecraft', 'Rainbow Six Siege','Valorant', 'Slapping Hydrogene', 'VJ mulla', 'Ankan PRO', 'Prime Leader Sudeep', 'Sao Sao_/\_', 'Get Burgified', 'Ankan Hassan', 'Motta', 'Server Suri', 'rtx on']
 players = {}
 
 #template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
