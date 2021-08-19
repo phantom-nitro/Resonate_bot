@@ -37,7 +37,7 @@ token = os.getenv('BOT_TOKEN')
 
 client = commands.Bot(command_prefix = ';')
 client.remove_command('help')
-status = ['Music', 'Movie', 'Rocket League', 'Minecraft', 'Rainbow Six Siege','Valorant', 'Slapping Hydrogene', 'VJ mulla', 'Ankan PRO', 'Prime Leader Sudeep', 'Sao Sao_/\_', 'Get Burgified', 'Ankan Hassan', 'Motta', 'Server Suri', 'rtx on']
+status = ['Music', 'Movie', 'Rocket League', 'Minecraft', 'Rainbow Six Siege','Valorant', 'Slapping Hydrogene', 'VJ mulla', 'Ankan PRO', 'Prime Leader Sudeep', 'Sao Sao_/\_', 'Get Burgified', 'Ankan Hassan', 'Motta', 'Server Suri', 'rtx on', ';help']
 players = {}
 
 #template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
@@ -120,21 +120,6 @@ async def meme(ctx):
     em = discord.Embed(title = name)
     em.set_image(url = url)
     await ctx.send(embed = em)
-	
-@client.command()
-async def booty(ctx):
-    subreddit = reddit.subreddit("booty")
-    all_subs = []
-    top = subreddit.top(limit = 100)
-    for submission in top:
-        all_subs.append(submission)
-    random_sub = random.choice(all_subs)
-    name = random_sub.title
-    url = random_sub.url
-    em = discord.Embed(title = name)
-    em.set_image(url = url)
-    await ctx.send(embed = em)
-	
 
 @client.event
 async def on_command_error(error, ctx):
@@ -439,7 +424,7 @@ async def egc(ctx, *, message):
         results = random.choices(ans)
         await ctx.send(*results)
     elif message == 'use the force':
-        ans = ['F U I\'m not a fan of StarWars', 'Fuck me with the force', 'Sorry I have no idea']
+        ans = ['I\'m not a fan of StarWars', 'Force', 'Sorry I have no idea']
         results = random.choices(ans)
         await ctx.send(*results)
     elif message == 'do you watch rick and morty':
