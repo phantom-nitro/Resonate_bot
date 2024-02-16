@@ -22,13 +22,13 @@ from music_cog import music_cog
 #import music
 
 
-reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8Q",
-                    client_secret = "YgPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
-                    username = "tempgoutham",
-                    password = "gnq316",
+reddit = praw.Reddit(client_id = "Vaaq3s4VInOk8CQ",
+                    client_secret = "YlPXbnCvKUtvJ3eNbk07JjfkkGGIrw",
+                    username = "temp",
+                    password = "temp",
                     user_agent = "pythonpraw")
 
-client = pymongo.MongoClient("mongodb+srv://goucric:gnq316@cluster0.ymixq.mongodb.net/discordBot?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://goucricc:temp@cluster0.ymixq.mongodb.net/discordBot?retryWrites=true&w=majority")
 db = client['discordBot']
 col = db['respect']
 
