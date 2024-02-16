@@ -21,7 +21,7 @@ token = os.getenv('BOT_TOKEN')
 
 client = commands.Bot(command_prefix = ';')
 client.remove_command('help')
-status = ['Music', 'Movie', 'Surangani Bad Words Remix', 'Adichi Thooku Bad Words Remix', 'Rocket League', 'Rainbow Six Siege','Valorant', 'Slapping Hydrogene', 'VJ mulla', 'Ankan PRO', 'Prime Leader Sudeep', 'Sao Sao_/\_', 'Get Burgified']
+status = ['Music', 'Movie', 'Rocket League', 'Rainbow Six Siege','Valorant', 'Slapping Hydrogene', 'VJ mulla', 'Ankan PRO', 'Prime Leader Sudeep', 'Sao Sao_/\_', 'Get Burgified']
 players = {}
 
 #template_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chatbotTemplate", "chatbottemplate.template")
@@ -473,11 +473,11 @@ async def egc(ctx, *, message):
         results = random.choices(ans)
         await ctx.send(*results)
     elif message == 'use the force':
-        ans = ['F U I\'m not a fan of StarWars', 'Fuck me with the force', 'Sorry I have no idea']
+        ans = ['F U I\'m not a fan of StarWars', 'The force', 'Sorry I have no idea']
         results = random.choices(ans)
         await ctx.send(*results)
     elif message == 'do you watch rick and morty':
-        ans = ['OOH WEE!', 'WUBBA LUBBA DUB-DUB!', 'Get Schwifty!', 'Fuck yeah!', 'SHOW ME WHAT YOU GOT..']
+        ans = ['OOH WEE!', 'WUBBA LUBBA DUB-DUB!', 'Get Schwifty!', 'Yeah!', 'SHOW ME WHAT YOU GOT..']
         results = random.choices(ans)
         await ctx.send(*results)
     #elif message[0] == 'c':
